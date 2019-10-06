@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wing Lam INF1339 Project 2</title>
+        
+        <style>
+            .output{
+                color:#c40044;
+                font-family: sans-serif;
+                font-size: 15px;
+            }
+            h1{
+                color:#742800;
+                font-family: serif;
+                font-style: oblique;
+            }
+        </style>
+        
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+        <script>
+            //STORE some data in "global" variables known to all functions
+            var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=rainbow&api-key=IakQt9AQxGHCP29yOzIzfh637zGH3PWv";
+            var articleCount = 0
+         //SETUP is a standard way P5 starts a script.
+            function setup() {
+              //P5 usually used for drawing    
+              noCanvas();
+              //SEND the URL and when the data comes back, run the function "gotData"    
+              loadJSON(url, gotData);
+            }
+            
+            //gotDATA for now just announces itself 
+            function gotData(data) {
+                //alert("FUNCTION GOT DATA ACTIVATED")
+               var text =''
+                for (i=0; i < data.response.docs.length; i++) {
+                    text = text + '<br />' + data.response.docs[i].headline.main
+                } document.getElementById("test_output").innerHTML = text
+               }
+           </script>
+    </head>
+<body>
+
+<h1>New York Times API: Articles from all time about rainbows</h1>
+    <!--a <p>(paragraph) element we will use for output-->
+    <!--it's name is "test_output" and it is styled by the class"output"-->
+    <p id="test_output" class="output"></p>
+
+
+
+
+
+
+</body>
+</html>
